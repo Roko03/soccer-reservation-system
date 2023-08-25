@@ -2,6 +2,10 @@
 const path = require("path");
 
 const nextConfig = {
+  reactStrictMode: true,
+  sassOptions: {
+    includePaths: [path.join(__dirname, "styles")],
+  },
   images: {
     remotePatterns: [
       {
@@ -9,9 +13,6 @@ const nextConfig = {
         hostname: "**",
       },
     ],
-  },
-  sassOptions: {
-    includePaths: [path.join(__dirname, "styles")],
   },
 };
 
