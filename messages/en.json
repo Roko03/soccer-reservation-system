@@ -2,6 +2,8 @@
   "Index": {
     "title": "Welcome to the application for the reservation football field!",
     "editProfil": "Edit profil",
-    "logOut": "Log out"
+    "logOut": "Log out",
+    "password": "Password",
+    "repeatPassword": "Repeat Password"
   }
 }
