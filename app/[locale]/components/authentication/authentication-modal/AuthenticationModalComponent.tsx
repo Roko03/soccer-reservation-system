@@ -1,3 +1,5 @@
+"use client";
+import { useTranslations } from "next-intl";
 import DialogComponent from "../../dialog/DialogComponent";
 import RegistrationForm from "../../registration-form/RegistrationForm";
 import styles from "./AuthenticationModalComponent.module.scss";
@@ -10,6 +12,7 @@ interface AuthenticationModalComponentProps {
 const AuthenticationModalComponent: React.FC<
   AuthenticationModalComponentProps
 > = ({ closeDialog }) => {
+  const t = useTranslations("Index");
   return (
     <DialogComponent closeDialog={closeDialog}>
       <div className={styles.authentication_modal}>
@@ -21,6 +24,7 @@ const AuthenticationModalComponent: React.FC<
           className={styles.close_button}
           onClick={closeDialog}
         />
+        <h2>{t("registerTitle")}</h2>
         <RegistrationForm />
       </div>
     </DialogComponent>

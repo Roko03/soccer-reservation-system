@@ -7,6 +7,8 @@
     "repeatPassword": "Ponovi šifru",
     "createNewAccount": "Izradi novi račun",
     "login": "Prijava",
-    "register": "Registriraj se"
+    "register": "Registracija",
+    "loginTitle": "Prijavi se",
+    "registerTitle": "Registriraj se"
   }
 }
