@@ -5,6 +5,8 @@
     "logOut": "Log out",
     "password": "Password",
     "repeatPassword": "Repeat Password",
-    "createNewAccount": "Create New Account"
+    "createNewAccount": "Create New Account",
+    "login": "Login",
+    "register": "Register"
   }
 }

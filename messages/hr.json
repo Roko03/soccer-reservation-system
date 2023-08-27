@@ -5,6 +5,8 @@
     "logOut": "Odjavi se",
     "password": "Šifra",
     "repeatPassword": "Ponovi šifru",
-    "createNewAccount": "Izradi novi račun"
+    "createNewAccount": "Izradi novi račun",
+    "login": "Prijava",
+    "register": "Registriraj se"
   }
 }
