@@ -4,6 +4,7 @@
     "editProfil": "Uredi profil",
     "logOut": "Odjavi se",
     "password": "Šifra",
-    "repeatPassword": "Ponovi šifru"
+    "repeatPassword": "Ponovi šifru",
+    "createNewAccount": "Izradi novi račun"
   }
 }

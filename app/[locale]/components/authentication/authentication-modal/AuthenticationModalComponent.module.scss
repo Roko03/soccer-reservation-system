@@ -1,0 +1,16 @@
+@import "../../../../styles/main.scss";
+
+.authentication_modal {
+  background-color: $white;
+  padding: rem(32);
+  border-radius: rem(16);
+  display: flex;
+  flex-direction: column;
+
+  .close_button {
+    margin-bottom: rem(24);
+    align-self: auto;
+    margin-left: auto;
+    cursor: pointer;
+  }
+}

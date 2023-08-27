@@ -4,6 +4,7 @@
     "editProfil": "Edit profil",
     "logOut": "Log out",
     "password": "Password",
-    "repeatPassword": "Repeat Password"
+    "repeatPassword": "Repeat Password",
+    "createNewAccount": "Create New Account"
   }
 }
