@@ -9,6 +9,13 @@
     "login": "Prijava",
     "register": "Registracija",
     "loginTitle": "Prijavi se",
-    "registerTitle": "Registriraj se"
+    "registerTitle": "Registriraj se",
+    "username": "Korisničko ime",
+    "usernameError": "Potrebno je korisničko ime",
+    "emailError": "Potreban je email",
+    "passwordError": "Potrebna je šifra",
+    "repeatPasswordError": "Potvrdi šifru",
+    "passwordNotMatch":"Šifre se ne poklapaju",
+    "passwordLength": "Šifra mora imati minimalno 6 karaktera"
   }
 }
