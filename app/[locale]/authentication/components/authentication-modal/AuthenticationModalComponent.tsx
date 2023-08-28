@@ -1,9 +1,9 @@
 "use client";
 import { useTranslations } from "next-intl";
-import DialogComponent from "../../dialog/DialogComponent";
-import RegistrationForm from "../../registration-form/RegistrationForm";
 import styles from "./AuthenticationModalComponent.module.scss";
 import Image from "next/image";
+import DialogComponent from "@/app/[locale]/components/dialog/DialogComponent";
+import RegistrationForm from "@/app/[locale]/components/registration-form/RegistrationForm";
 
 interface AuthenticationModalComponentProps {
   closeDialog: () => void;

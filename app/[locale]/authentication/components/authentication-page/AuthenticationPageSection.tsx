@@ -2,8 +2,8 @@
 import styles from "./AuthenticationPageSections.module.scss";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import LoginFormComponent from "../../login-form/LoginFormComponent";
 import { useState } from "react";
+import LoginFormComponent from "@/app/[locale]/components/login-form/LoginFormComponent";
 import AuthenticationModalComponent from "../authentication-modal/AuthenticationModalComponent";
 
 const AuthenticationPageSection = () => {
