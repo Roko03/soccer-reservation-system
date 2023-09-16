@@ -7,6 +7,22 @@ import { useState } from "react";
 import Image from "next/image";
 import registerUser from "@/lib/registerUser";
 import bcrypt from "bcryptjs";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const registerSchema = z
+  .object({
+    username: z.string(),
+    email: z.string().email(),
+    password: z.string().min(10),
+    repeatPassword: z.string(),
+  })
+  .refine((data) => data.password === data.repeatPassword, {
+    message: "Passwords must match",
+    path: ["repeatPassword"],
+  });
+
+type RegisterSchema = z.infer<typeof registerSchema>;
 
 const RegistrationForm = () => {
   const {
@@ -14,8 +30,10 @@ const RegistrationForm = () => {
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
-    getValues,
-  } = useForm<RegisterData>();
+  } = useForm<RegisterSchema>({
+    resolver: zodResolver(registerSchema),
+  });
+
   const t = useTranslations("Index");
   const [passwordInputVisible, setPasswordInputVisible] = useState(false);
   const [repeatPasswordInputVisible, setRepeatPasswordInputVisible] =
@@ -28,7 +46,6 @@ const RegistrationForm = () => {
       email: data.email,
       password: hashedPassword,
     };
-
     registerUser(user);
     reset();
   };
@@ -38,7 +55,7 @@ const RegistrationForm = () => {
       <input
         type="text"
         placeholder={t("username")}
-        {...register("username", { required: t("usernameError") })}
+        {...register("username")}
       />
       {errors.username && (
         <p className={styles.error}>{`${errors.username.message}`}</p>
@@ -46,7 +63,7 @@ const RegistrationForm = () => {
       <input
         type="email"
         placeholder="Email"
-        {...register("email", { required: t("emailError") })}
+        {...register("email")}
         autoComplete="username"
       />
       {errors.email && (
@@ -56,13 +73,7 @@ const RegistrationForm = () => {
         <input
           type={passwordInputVisible ? "text" : "password"}
           placeholder={t("password")}
-          {...register("password", {
-            required: t("passwordError"),
-            minLength: {
-              value: 6,
-              message: t("passwordLength"),
-            },
-          })}
+          {...register("password")}
           autoComplete="new-password"
         />
         <div
@@ -93,11 +104,7 @@ const RegistrationForm = () => {
         <input
           type={repeatPasswordInputVisible ? "text" : "password"}
           placeholder={t("repeatPassword")}
-          {...register("repeatPassword", {
-            required: t("repeatPasswordError"),
-            validate: (value) =>
-              value === getValues("password") || t("passwordNotMatch"),
-          })}
+          {...register("repeatPassword")}
           autoComplete="new-password"
         />
         <div
