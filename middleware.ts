@@ -4,7 +4,7 @@ import type { NextRequest } from 'next/server'
 import { NextMiddleware,NextFetchEvent} from 'next/server';
  
 const locales = ['en', 'hr'];
-const publicPages = ["/","/authentication"];
+const publicPages = ["/","/about"];
 const PUBLIC_FILE = /\.(.*)$/
 
 export default withExtraMiddleware(
@@ -27,13 +27,14 @@ function withExtraMiddleware(next: NextMiddleware) {
     const url = request.nextUrl.clone();
     let token = request.cookies.get('token');
     const locale = request.cookies.get('NEXT_LOCALE')?.value || 'en';
+    const isPublicPage = url.pathname === `${locale === 'en' ? '/' : '/hr'}` 
 
     if(token && url.pathname === `${locale === 'en' ? '/' : '/hr/'}authentication`){
       url.pathname = `${locale === 'en' ? '/' : '/hr'}`;
       return NextResponse.redirect(url)
     }
 
-    if(!token && url.pathname === `${locale === 'en' ? '/' : '/hr'}`){
+    if(!token && isPublicPage){
       url.pathname = `${locale === 'en' ? '/' : '/hr/'}authentication`;
       return NextResponse.redirect(url)
     }
