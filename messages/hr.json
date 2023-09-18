@@ -16,6 +16,8 @@
     "passwordError": "Potrebna je šifra",
     "repeatPasswordError": "Potvrdi šifru",
     "passwordNotMatch":"Šifre se ne poklapaju",
-    "passwordLength": "Šifra mora imati minimalno 6 karaktera"
+    "passwordLength": "Šifra mora imati minimalno 6 karaktera",
+    "successfulRegisterMessage": "Uspješno ste se registrirali",
+    "errorRegisterMessage": "Korisničko ime ili email već postoje"
   }
 }

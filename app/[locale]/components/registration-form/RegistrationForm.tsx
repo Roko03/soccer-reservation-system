@@ -10,9 +10,14 @@ import bcrypt from "bcryptjs";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+interface RegistrationFormProps {
+  setSuccessful: (value: boolean) => void;
+  setError: (value: boolean) => void;
+}
+
 const registerSchema = z
   .object({
-    username: z.string(),
+    username: z.string().min(1),
     email: z.string().email(),
     password: z.string().min(10),
     repeatPassword: z.string(),
@@ -24,7 +29,10 @@ const registerSchema = z
 
 type RegisterSchema = z.infer<typeof registerSchema>;
 
-const RegistrationForm = () => {
+const RegistrationForm: React.FC<RegistrationFormProps> = ({
+  setSuccessful,
+  setError,
+}) => {
   const {
     register,
     handleSubmit,
@@ -46,7 +54,15 @@ const RegistrationForm = () => {
       email: data.email,
       password: hashedPassword,
     };
-    registerUser(user);
+    const response = await registerUser(user);
+    if (!response) {
+      setSuccessful(false);
+      setError(true);
+      return;
+    }
+
+    setSuccessful(true);
+    setError(false);
     reset();
   };
 
