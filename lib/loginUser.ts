@@ -1,28 +1,24 @@
-import bcrypt from "bcryptjs"; // You need to import the bcrypt library
+import parseJWT from "@/app/util/parseJWT";
+import { setCookie } from "cookies-next";
 
-export default async function loginUser(data: LoginData){
-    const emailExistResponse = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/users?email=${data.email}`,
-        {
-        cache: 'no-store',
-        method: 'GET',
-        headers: {
-            'content-type': 'application/json',
-        },
-        }
+export default async function loginUser(token: string) {
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+
+    const userData = parseJWT(token)
+    const userId = userData.userId;
+
+    const authenticatedResponse  = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/users?id=${userId}`, {headers: headers}
     );
 
-    if (!emailExistResponse.ok) return null;
+    if (!authenticatedResponse.ok) return null;
 
-    const userData = await emailExistResponse.json();
+    setCookie('token',token,{path: '/'})
 
-    console.log(userData)
+    const authenticatedData = await authenticatedResponse.json();
 
-    if(!userData || !userData[0].password) return false;
-
-    const hashedPassword = userData[0].password;
-
-    const passwordMatch = await bcrypt.compare(data.password, hashedPassword)
-
-    
+    return authenticatedData;
 }

@@ -1,4 +1,3 @@
-"use client";
 import { useTranslations } from "next-intl";
 import styles from "./LoginFormComponent.module.scss";
 import ButtonComponent from "../button/ButtonComponent";
@@ -6,6 +5,8 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import loginUser from "@/lib/loginUser";
+import { useRouter } from "next/navigation";
+import getUserForLogin from "@/lib/getUserForLogin";
 
 interface LoginFormComponentProps {
   setIsModalOpen: () => void;
@@ -21,6 +22,7 @@ type LoginSchema = z.infer<typeof loginSchema>;
 const LoginFormComponent: React.FC<LoginFormComponentProps> = ({
   setIsModalOpen,
 }) => {
+  const route = useRouter();
   const t = useTranslations("Index");
   const {
     register,
@@ -30,16 +32,20 @@ const LoginFormComponent: React.FC<LoginFormComponentProps> = ({
   } = useForm<LoginSchema>({ resolver: zodResolver(loginSchema) });
 
   const onSubmit: SubmitHandler<LoginData> = async (data) => {
-    console.log("Data", data);
-    const resposne = await loginUser(data);
-    console.log("Ej", resposne);
+    const resposne = await getUserForLogin(data);
     if (!resposne) {
       console.log("Neuspjela prijava");
       reset();
       return;
     }
+    const { token } = resposne;
 
-    console.log("Uspješno");
+    const dataLogin = await loginUser(token);
+
+    if (dataLogin) {
+      route.push("/");
+    }
+
     reset();
   };
 
