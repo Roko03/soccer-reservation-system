@@ -18,6 +18,7 @@
     "passwordNotMatch":"Password must match",
     "passwordLength": "Password must be at least 6 characters",
     "successfulRegisterMessage": "You have successfully register",
-    "errorRegisterMessage": "Username or email already exist"
+    "errorRegisterMessage": "Username or email already exist",
+    "loginError": "Failed to log in"
   }
 }

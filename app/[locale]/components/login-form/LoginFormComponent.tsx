@@ -10,6 +10,7 @@ import getUserForLogin from "@/lib/getUserForLogin";
 
 interface LoginFormComponentProps {
   setIsModalOpen: () => void;
+  setFailedLogin: () => void;
 }
 
 const loginSchema = z.object({
@@ -21,6 +22,7 @@ type LoginSchema = z.infer<typeof loginSchema>;
 
 const LoginFormComponent: React.FC<LoginFormComponentProps> = ({
   setIsModalOpen,
+  setFailedLogin,
 }) => {
   const route = useRouter();
   const t = useTranslations("Index");
@@ -34,7 +36,7 @@ const LoginFormComponent: React.FC<LoginFormComponentProps> = ({
   const onSubmit: SubmitHandler<LoginData> = async (data) => {
     const resposne = await getUserForLogin(data);
     if (!resposne) {
-      console.log("Neuspjela prijava");
+      setFailedLogin();
       reset();
       return;
     }
