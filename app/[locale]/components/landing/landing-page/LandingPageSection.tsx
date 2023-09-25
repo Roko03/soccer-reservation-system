@@ -3,6 +3,7 @@ import getUser from "@/lib/getUser";
 import styles from "./LandingPageSection.module.scss";
 import { useEffect, useState } from "react";
 import HeaderComponent from "../../header/HeaderComponent";
+import LandingCardsComponent from "../landing-cards/LandingCardsComponent";
 
 const LandingPageSection = () => {
   const [currentUser, setCurrentUser] = useState<RegisterUser>({
@@ -23,8 +24,8 @@ const LandingPageSection = () => {
   return (
     <>
       <HeaderComponent {...currentUser} />
-      <section>
-        <h1>Ej</h1>
+      <section className={styles.landing_container}>
+        <LandingCardsComponent />
       </section>
     </>
   );
