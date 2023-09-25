@@ -21,4 +21,6 @@ type Stadium = {
     name: string;
     location: string;
     imageUrl: string;
+    latitude: number;
+    longitude: number;
 }

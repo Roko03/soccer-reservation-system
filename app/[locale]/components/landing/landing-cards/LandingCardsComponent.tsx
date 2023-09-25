@@ -8,6 +8,8 @@ const LandingCardsComponent = () => {
       name: "Teren Kafic",
       location: "Solin",
       imageUrl: "/background.jpg",
+      latitude: 1309123,
+      longitude: 4123,
     },
   ];
 
