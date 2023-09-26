@@ -15,3 +15,12 @@ type RegisterUser = {
     email:string;
     password:string;
 }
+
+type Stadium = {
+    id:string;
+    name: string;
+    location: string;
+    imageUrl: string;
+    latitude: number;
+    longitude: number;
+}
