@@ -9,7 +9,7 @@ const LandingCardComponent: React.FC<Stadium> = ({
   imageUrl,
 }) => {
   return (
-    <Link href={`/pitch/${id}`} className={styles.landing_card}>
+    <Link href={`/stadiums/${id}`} className={styles.landing_card}>
       <div className={styles.landing_card__description}>
         <h2>{name}</h2>
         <span className={styles.location}>

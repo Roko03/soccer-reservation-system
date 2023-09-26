@@ -1,21 +1,16 @@
 import styles from "./LandingCardsComponent.module.scss";
 import LandingCardComponent from "./landing-card/LandingCardComponent";
 
-const LandingCardsComponent = () => {
-  const array: Stadium[] = [
-    {
-      id: "i3249jsfsmg9qraw",
-      name: "Teren Kafic",
-      location: "Solin",
-      imageUrl: "/background.jpg",
-      latitude: 1309123,
-      longitude: 4123,
-    },
-  ];
+interface LandingCardsComponentProps {
+  stadiums: Stadium[];
+}
 
+const LandingCardsComponent: React.FC<LandingCardsComponentProps> = ({
+  stadiums,
+}) => {
   return (
     <div className={styles.ladning_cards}>
-      {array.map((stadium, index) => {
+      {stadiums.map((stadium, index) => {
         return <LandingCardComponent {...stadium} key={index} />;
       })}
     </div>

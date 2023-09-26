@@ -5,7 +5,13 @@ import { useEffect, useState } from "react";
 import HeaderComponent from "../../header/HeaderComponent";
 import LandingCardsComponent from "../landing-cards/LandingCardsComponent";
 
-const LandingPageSection = () => {
+interface LandingPageSectionProps {
+  stadiums: Stadium[];
+}
+
+const LandingPageSection: React.FC<LandingPageSectionProps> = ({
+  stadiums,
+}) => {
   const [currentUser, setCurrentUser] = useState<RegisterUser>({
     username: "",
     email: "",
@@ -25,7 +31,7 @@ const LandingPageSection = () => {
     <>
       <HeaderComponent {...currentUser} />
       <section className={styles.landing_container}>
-        <LandingCardsComponent />
+        <LandingCardsComponent stadiums={stadiums} />
       </section>
     </>
   );
